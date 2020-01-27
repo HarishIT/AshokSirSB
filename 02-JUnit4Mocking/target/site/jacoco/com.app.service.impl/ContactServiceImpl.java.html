@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContactServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">02-JUnit4Mocking</a> &gt; <a href="index.source.html" class="el_package">com.app.service.impl</a> &gt; <span class="el_source">ContactServiceImpl.java</span></div><h1>ContactServiceImpl.java</h1><pre class="source lang-java linenums">package com.app.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.Contact;
+import com.app.dao.ContactDao;
+import com.app.exception.NoDataFoundException;
+import com.app.service.ContactService;
+
+<span class="fc" id="L13">public class ContactServiceImpl implements ContactService {</span>
+	private ContactDao dao;
+
+	public void setDao(ContactDao dao) {
+<span class="fc" id="L17">		this.dao = dao;</span>
+<span class="fc" id="L18">	}</span>
+
+	public Long findMobileByName(String name) {
+<span class="fc" id="L21">		Long mobileNo = dao.findMobileByName(name);</span>
+
+<span class="fc bfc" id="L23" title="All 2 branches covered.">		if (mobileNo == null) {</span>
+<span class="fc" id="L24">			throw new NoDataFoundException(&quot;No Data Found&quot;);</span>
+		}
+<span class="fc" id="L26">		return mobileNo;</span>
+	}
+
+	public List&lt;Contact&gt; findAll() {
+<span class="fc" id="L30">		List&lt;Contact&gt; contacts = dao.findAll();</span>
+
+<span class="pc bpc" id="L32" title="1 of 4 branches missed.">		if (contacts == null || contacts.isEmpty()) {</span>
+<span class="fc" id="L33">			throw new NoDataFoundException(&quot;No Data Found&quot;);</span>
+		}
+		else {
+			
+		}
+<span class="fc" id="L38">		return contacts;</span>
+	}
+
+	private void doWork() {
+<span class="fc" id="L42">		System.out.println(&quot;DO WORK&quot;);</span>
+<span class="fc" id="L43">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
